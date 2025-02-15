@@ -4,7 +4,8 @@ export const memeCoinGuide = {
   date: 'Jan 5, 2025',
   readingTime: '10 min read',
   slug: 'meme-coin-guide',
-  coverImage: '/blog/meme-coin.jpg',
+  coverImage: '/blog/erc20.png',
+  externalUrl: 'https://mulinya-erc20.hashnode.dev/beginners-guide-to-building-a-meme-coin-on-base',
   tags: ['Solidity', 'Base', 'Smart Contracts', 'ERC20', 'Tutorial'],
   externalDocs: [
     {
@@ -63,34 +64,6 @@ export const memeCoinGuide = {
     },
     {
       type: 'heading',
-      content: 'Non-Fungible Tokens (NFTs)',
-    },
-    {
-      type: 'text',
-      content: 'Non-fungible tokens represent unique, indivisible assets. Unlike fungible tokens, these cannot be broken down into smaller units, and each token has its own unique identity. A good real-world example is the Mona Lisa. If you try to tear it apart or split it into pieces, its value and uniqueness are lost.',
-    },
-    {
-      type: 'text',
-      content: 'NFTs are commonly represented using the ERC-721 standard.',
-    },
-    {
-      type: 'heading',
-      content: 'Semi-Fungible Tokens (SFTs)',
-    },
-    {
-      type: 'text',
-      content: 'Semi-fungible tokens combine the properties of both fungible and non-fungible tokens. Initially, they behave like fungible tokens—interchangeable and identical in value. However, once they are redeemed or used in a specific context, they transform into unique, non-fungible assets.',
-    },
-    {
-      type: 'text',
-      content: 'A good example is a concert ticket. Before the event, all tickets of the same category (e.g., general admission) are identical and interchangeable. After the event, they become unique collectibles, representing proof of attendance or memorabilia.',
-    },
-    {
-      type: 'text',
-      content: 'SFTs are commonly represented using the ERC-1155 standard.',
-    },
-    {
-      type: 'heading',
       content: 'Step-by-Step Guide to Writing a simple meme coin (ERC-20) Smart Contract',
     },
     {
@@ -102,78 +75,46 @@ export const memeCoinGuide = {
       content: 'Since we are using Remix browser IDE we won\'t be installing any dependencies or tools. We will need Metamask to deploy our contract to BASE, an Ethereum L2.',
     },
     {
-      type: 'steps',
-      items: [
-        'Head over to Remix IDE',
-        'Create a Folder',
-        'Inside the Folder Create a File called "MyToken.sol" or any name of your preference',
-        'Enter that File(MyToken.sol) and Proceed to the next stage',
-      ],
-    },
-    {
-      type: 'heading',
-      content: '2. Writing the Code',
-    },
-    {
-      type: 'text',
-      content: 'We will use OpenZeppelin library to implement this sample Project as we will be implementing most of the functions.',
-    },
-    {
       type: 'code',
       language: 'solidity',
       filename: 'MemeCoin.sol',
       content: `// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity 0.8.28;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MemeCoin is ERC20, Ownable {
-    constructor() ERC20("MemeCoin", "MEME") Ownable(msg.sender) {
-        _mint(msg.sender, 1000000 * 10 ** decimals());
+    // Events to track token transfers, burns and mints
+    event TokensSent(address indexed from, address indexed to, uint256 amount);
+    event TokensBurned(address indexed burner, uint256 amount);
+    event TokensMinted(address indexed recipient, uint256 amount);
+
+    // Maximum supply of tokens (21 million with 18 decimals)
+    uint256 public constant MAX_SUPPLY = 21_000_000e18;
+
+    constructor(string memory name,
+                string memory symbol) ERC20(name,symbol) Ownable(msg.sender) {
+        // Mint initial supply to contract deployer (2 million tokens)
+        _mint(msg.sender, 2_000_000e18);
     }
 }`,
     },
     {
       type: 'text',
-      content: 'View the full detailed guide in the blog post to learn more about implementing and deploying your meme coin.',
+      content: 'The contract has been deployed to Base mainnet at address: 0xd2cB6Bb417CeB5cEC1A8A4d69EF5f0c4f3Fbae9f',
     },
     {
       type: 'text',
-      content: 'The contract has been deployed to Base mainnet at address: 0x1234...5678 (Note: This is a placeholder address. Replace with your actual deployed contract address)',
-    },
-    {
-      type: 'heading',
-      content: '4. Deploy Our Contract to Base',
-    },
-    {
-      type: 'text',
-      content: 'After deploying the contract, you can view its details on BaseScan using the following address:',
-    },
-    {
-      type: 'code',
-      language: 'text',
-      content: '0xd2cB6Bb417CeB5cEC1A8A4d69EF5f0c4f3Fbae9f',
+      content: 'Read the full detailed guide on Hashnode to learn step-by-step how to create and deploy your meme coin.',
     },
     {
       type: 'links',
-      title: 'Connect with me:',
+      title: 'Read More',
       items: [
         {
-          text: 'Schedule a Coffee Chat',
-          url: 'https://calendly.com/mulinyafadhil/coffee-chat-s-with-fadhil',
-        },
-        {
-          text: 'Twitter',
-          url: 'https://x.com/mulinyafadhil',
-        },
-        {
-          text: 'LinkedIn',
-          url: 'https://www.linkedin.com/in/fadhil-mulinya-35464b238/',
-        },
-        {
-          text: 'Farcaster',
-          url: 'https://warpcast.com/mulinya',
+          text: 'Full Tutorial on Hashnode',
+          url: 'https://mulinya-erc20.hashnode.dev/beginners-guide-to-building-a-meme-coin-on-base',
         },
       ],
     },

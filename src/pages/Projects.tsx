@@ -11,54 +11,25 @@ import {
   useColorModeValue,
   Icon,
   Link,
-  HStack,
 } from '@chakra-ui/react';
 import { FaGithub } from 'react-icons/fa';
 
 // Note: Replace with actual project data when available
 const projects = [
   {
-    title: 'Project 1',
-    description: 'Project description will go here.',
-    tags: ['Solidity', 'TypeScript'],
-    githubUrl: 'https://github.com/FadhilMulinya/project1',
-    demoUrl: '#',
+    title: 'Token-Creator',
+    description: 'A decentralized application that enables users to create and deploy their own ERC20 tokens on the Polygon mainnet. Built with security and user-friendliness in mind, it simplifies the token creation process for both beginners and experienced developers.',
+    tags: ['Solidity', 'Polygon', 'ERC20', 'Web3'],
+    githubUrl: 'https://github.com/FadhilMulinya/Token-Creator',
+    demoUrl: 'https://token-creator-navy.vercel.app/',
   },
   {
-    title: 'Project 2',
-    description: 'Project description will go here.',
-    tags: ['Yul', 'Inline Assembly'],
-    githubUrl: 'https://github.com/FadhilMulinya/project2',
-    demoUrl: '#',
-  },
-  {
-    title: 'Project 3',
-    description: 'Project description will go here.',
-    tags: ['Solidity', 'TypeScript'],
-    githubUrl: 'https://github.com/FadhilMulinya/project3',
-    demoUrl: '#',
-  },
-  {
-    title: 'Project 4',
-    description: 'Project description will go here.',
-    tags: ['Solidity', 'Yul'],
-    githubUrl: 'https://github.com/FadhilMulinya/project4',
-    demoUrl: '#',
-  },
-  {
-    title: 'Project 5',
-    description: 'Project description will go here.',
-    tags: ['TypeScript', 'Smart Contracts'],
-    githubUrl: 'https://github.com/FadhilMulinya/project5',
-    demoUrl: '#',
-  },
-  {
-    title: 'Project 6',
-    description: 'Project description will go here.',
-    tags: ['Solidity', 'DeFi'],
-    githubUrl: 'https://github.com/FadhilMulinya/project6',
-    demoUrl: '#',
-  },
+    title: 'DCN (Digital Certificate NFTs)',
+    description: 'An innovative platform that allows educational institutions to issue and manage digital certificates as NFTs. This solution provides tamper-proof, verifiable credentials while reducing certificate fraud and simplifying the verification process.',
+    tags: ['NFTs', 'Education', 'Smart Contracts', 'ERC721'],
+    githubUrl: 'https://github.com/FadhilMulinya/DCN',
+    demoUrl: 'https://dcnweb.vercel.app',
+  }
 ];
 
 const Projects = () => {
@@ -75,25 +46,9 @@ const Projects = () => {
           <Text fontSize="xl" color="brand.600" mb={4}>
             A collection of my work in blockchain development and smart contract engineering.
           </Text>
-          <HStack spacing={2} align="center" color="brand.600">
-            <Icon as={FaGithub} w={6} h={6} />
-            <Text>
-              Most of my projects are open source and available on{' '}
-              <Link
-                href="https://github.com/FadhilMulinya"
-                isExternal
-                color="brand.800"
-                fontWeight="bold"
-                _hover={{ textDecoration: 'underline' }}
-              >
-                GitHub
-              </Link>
-              . Feel free to explore, contribute, or use them as reference!
-            </Text>
-          </HStack>
         </Box>
 
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
           {projects.map((project, index) => (
             <LinkBox
               key={index}
@@ -143,6 +98,43 @@ const Projects = () => {
             </LinkBox>
           ))}
         </SimpleGrid>
+
+        <Box
+          mt={8}
+          p={8}
+          bg={boxBg}
+          borderRadius="lg"
+          shadow={boxShadow}
+          textAlign="center"
+        >
+          <VStack spacing={4}>
+            <Icon as={FaGithub} w={12} h={12} color="brand.800" />
+            <Heading as="h3" size="lg">
+              More Projects on GitHub
+            </Heading>
+            <Text color="brand.600" maxW="2xl">
+              Explore more of my blockchain development work, including smart contracts, DeFi protocols, and technical tutorials on my GitHub profile.
+            </Text>
+            <Link
+              href="https://github.com/FadhilMulinya"
+              isExternal
+              bg="brand.800"
+              color="white"
+              px={8}
+              py={3}
+              borderRadius="lg"
+              fontWeight="bold"
+              _hover={{
+                bg: 'brand.700',
+                textDecoration: 'none',
+                transform: 'translateY(-2px)',
+              }}
+              transition="all 0.2s"
+            >
+              Visit GitHub Profile
+            </Link>
+          </VStack>
+        </Box>
       </VStack>
     </Container>
   );
