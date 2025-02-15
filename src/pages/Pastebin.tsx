@@ -26,6 +26,22 @@ const languages = [
   { value: 'text', label: 'Plain Text' },
 ];
 
+// Generate a random ID for the snippet
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 15) + 
+         Math.random().toString(36).substring(2, 15);
+};
+
+// Store snippet in localStorage
+const storeSnippet = (id: string, data: any) => {
+  const snippets = JSON.parse(localStorage.getItem('codeSnippets') || '{}');
+  snippets[id] = {
+    ...data,
+    timestamp: new Date().toISOString(),
+  };
+  localStorage.setItem('codeSnippets', JSON.stringify(snippets));
+};
+
 const Pastebin = () => {
   const [code, setCode] = useState('');
   const [language, setLanguage] = useState('text');
@@ -45,8 +61,33 @@ const Pastebin = () => {
       return;
     }
 
-    const encodedCode = btoa(code);
-    navigate(`/shared/${encodedCode}`);
+    try {
+      const snippetId = generateId();
+      const shareData = {
+        code,
+        language,
+        filename: filename.trim(),
+      };
+      
+      storeSnippet(snippetId, shareData);
+      navigate(`/shared/${snippetId}`);
+      
+      toast({
+        title: 'Success',
+        description: 'Code snippet shared successfully! You can now copy the URL to share.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to generate share link. Please try again.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   return (

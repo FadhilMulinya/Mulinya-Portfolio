@@ -13,7 +13,7 @@ import {
   Link,
   HStack,
 } from '@chakra-ui/react';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 
 // Note: Replace with actual project data when available
 const projects = [

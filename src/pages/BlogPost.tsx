@@ -20,99 +20,14 @@ import {
 import { useParams } from 'react-router-dom';
 import CodeBlock from '../components/blog/CodeBlock';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { getBlogPostBySlug, BlogPost as IBlogPost } from '../content/blog';
+import { getBlogPostBySlug } from '../content/blog';
 import { FaBook, FaExternalLinkAlt } from 'react-icons/fa';
-
-// Example of how to structure blog content with code blocks
-const sampleBlogPost = {
-  title: 'Understanding Smart Contract Security',
-  description:
-    'A deep dive into common security vulnerabilities in smart contracts and how to prevent them.',
-  date: 'Feb 15, 2024',
-  readingTime: '5 min read',
-  coverImage: '/blog/sample-cover-1.jpg',
-  tags: ['Solidity', 'Security', 'Smart Contracts'],
-  sections: [
-    {
-      type: 'text',
-      content: 'Smart contract security is crucial in blockchain development. Let\'s look at some common vulnerabilities and how to prevent them.',
-    },
-    {
-      type: 'heading',
-      content: 'Reentrancy Attacks',
-    },
-    {
-      type: 'text',
-      content: 'One of the most famous vulnerabilities in smart contracts is the reentrancy attack. Here\'s an example of a vulnerable contract:',
-    },
-    {
-      type: 'code',
-      language: 'solidity',
-      filename: 'Vulnerable.sol',
-      content: `contract Vulnerable {
-    mapping(address => uint) public balances;
-
-    function withdraw() public {
-        uint balance = balances[msg.sender];
-        require(balance > 0);
-        
-        (bool success, ) = msg.sender.call{value: balance}("");
-        require(success);
-        
-        balances[msg.sender] = 0;
-    }
-}`,
-    },
-    {
-      type: 'text',
-      content: 'To prevent this, always update state before external calls:',
-    },
-    {
-      type: 'code',
-      language: 'solidity',
-      filename: 'Secure.sol',
-      content: `contract Secure {
-    mapping(address => uint) public balances;
-
-    function withdraw() public {
-        uint balance = balances[msg.sender];
-        require(balance > 0);
-        
-        balances[msg.sender] = 0;
-        
-        (bool success, ) = msg.sender.call{value: balance}("");
-        require(success);
-    }
-}`,
-    },
-    {
-      type: 'heading',
-      content: 'Integer Overflow/Underflow',
-    },
-    {
-      type: 'text',
-      content: 'Another common vulnerability is integer overflow/underflow. Here\'s how to prevent it:',
-    },
-    {
-      type: 'code',
-      language: 'solidity',
-      filename: 'SafeMath.sol',
-      content: `// Using OpenZeppelin's SafeMath
-using SafeMath for uint256;
-
-function transfer(address recipient, uint256 amount) public {
-    balances[msg.sender] = balances[msg.sender].sub(amount);
-    balances[recipient] = balances[recipient].add(amount);
-}`,
-    },
-  ],
-};
 
 interface ContentSectionProps {
   section: {
     type: string;
     content?: string;
-    items?: string[];
+    items?: Array<string | { text: string; url: string }>;
     title?: string;
     language?: string;
     filename?: string;
@@ -155,7 +70,9 @@ const ContentSection = ({ section, blogPostSlug, blogPostTitle }: ContentSection
       return (
         <UnorderedList mb={4} pl={4} spacing={2}>
           {section.items?.map((item, index) => (
-            <ListItem key={index}>{item}</ListItem>
+            <ListItem key={index}>
+              {typeof item === 'string' ? item : item.text}
+            </ListItem>
           ))}
         </UnorderedList>
       );
@@ -163,7 +80,9 @@ const ContentSection = ({ section, blogPostSlug, blogPostTitle }: ContentSection
       return (
         <OrderedList mb={4} pl={4} spacing={2}>
           {section.items?.map((item, index) => (
-            <ListItem key={index}>{item}</ListItem>
+            <ListItem key={index}>
+              {typeof item === 'string' ? item : item.text}
+            </ListItem>
           ))}
         </OrderedList>
       );

@@ -7,7 +7,6 @@ import {
   VStack,
   Icon,
   useToast,
-  Link,
 } from '@chakra-ui/react';
 import { FaDownload } from 'react-icons/fa';
 
