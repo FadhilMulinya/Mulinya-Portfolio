@@ -14,7 +14,6 @@ export const useDrawing = (initialTheme: Theme) => {
   const [drawingHistory, setDrawingHistory] = useState<ImageData[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const drawGrid = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
     ctx.fillStyle = currentTheme.bgColor;
@@ -390,7 +389,6 @@ export const useDrawing = (initialTheme: Theme) => {
     newHistory.push(imageData);
     setDrawingHistory(newHistory);
     setHistoryIndex(newHistory.length - 1);
-    setHasUnsavedChanges(true);
 
     setIsDrawing(false);
   };
@@ -405,7 +403,6 @@ export const useDrawing = (initialTheme: Theme) => {
       setHistoryIndex(historyIndex - 1);
       const imageData = drawingHistory[historyIndex - 1];
       ctx.putImageData(imageData, 0, 0);
-      setHasUnsavedChanges(true);
     }
   };
 
@@ -419,7 +416,6 @@ export const useDrawing = (initialTheme: Theme) => {
       setHistoryIndex(historyIndex + 1);
       const imageData = drawingHistory[historyIndex + 1];
       ctx.putImageData(imageData, 0, 0);
-      setHasUnsavedChanges(true);
     }
   };
 

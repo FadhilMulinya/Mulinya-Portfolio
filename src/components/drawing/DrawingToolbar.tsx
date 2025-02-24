@@ -26,7 +26,6 @@ import {
   FaMousePointer,
 } from 'react-icons/fa';
 import { Tool, BrushType } from './types';
-import { SizeControls } from './SizeControls';
 
 interface DrawingToolbarProps {
   tool: Tool;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Button, Flex, Input, Text, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Select, useToast, Tooltip } from '@chakra-ui/react';
-import { FaDownload, FaTrash, FaEraser, FaPaintBrush, FaSave } from 'react-icons/fa';
+import { FaDownload, FaTrash, FaSave } from 'react-icons/fa';
 
 type Tool = 'brush' | 'eraser';
 type BrushType = 'normal' | 'round' | 'square' | 'spray' | 'calligraphy' | 'pattern' | 'neon';

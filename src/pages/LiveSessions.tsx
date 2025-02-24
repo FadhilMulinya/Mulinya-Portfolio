@@ -20,13 +20,6 @@ import {
   SliderThumb,
   Collapse,
   useDisclosure,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  InputGroup,
-  InputRightElement,
   SimpleGrid,
 } from '@chakra-ui/react';
 import { useState, useEffect, useRef } from 'react';
@@ -43,7 +36,7 @@ import {
   FaUserFriends,
   FaCopy,
 } from 'react-icons/fa';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 interface JitsiConfig {
@@ -57,23 +50,30 @@ interface JitsiConfig {
   participantVolume: number;
 }
 
+interface MediaDeviceInfo {
+  deviceId: string;
+  groupId: string;
+  kind: string;
+  label: string;
+}
+
+interface AvailableDevices {
+  audioInput: MediaDeviceInfo[];
+  videoInput: MediaDeviceInfo[];
+}
+
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 
 const LiveSessions = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { roomId } = useParams();
+  const { roomId } = useParams<{ roomId: string }>();
   const [roomName, setRoomName] = useState(roomId || '');
   const [joinCode, setJoinCode] = useState('');
   const [isInSession, setIsInSession] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isVideoOff, setIsVideoOff] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [availableDevices, setAvailableDevices] = useState<{
-    audioInput: MediaDeviceInfo[];
-    videoInput: MediaDeviceInfo[];
-  }>({ audioInput: [], videoInput: [] });
   const { isOpen: isConfigOpen, onToggle: onConfigToggle } = useDisclosure();
   const jitsiContainerRef = useRef<HTMLDivElement>(null);
   const toast = useToast();
@@ -87,6 +87,11 @@ const LiveSessions = () => {
     startWithVideoMuted: false,
     enableLowBandwidth: false,
     participantVolume: 100,
+  });
+
+  const [availableDevices, setAvailableDevices] = useState<AvailableDevices>({
+    audioInput: [],
+    videoInput: []
   });
 
   useEffect(() => {
@@ -135,13 +140,6 @@ const LiveSessions = () => {
       return;
     }
     navigate(`/academy/live-sessions/${joinCode}`);
-  };
-
-  const endSession = () => {
-    setIsInSession(false);
-    setRoomName('');
-    setIsFullscreen(false);
-    navigate('/academy/live-sessions', { replace: true });
   };
 
   const toggleFullscreen = () => {
