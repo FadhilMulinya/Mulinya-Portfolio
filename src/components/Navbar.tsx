@@ -16,7 +16,7 @@ const Links = [
   { name: 'Blog', path: '/blog' },
   { name: 'Projects', path: '/projects' },
   { name: 'Resume', path: '/resume' },
-  { name: 'Pastebin', path: '/pastebin' },
+  { name: 'Academy', path: '/academy' },
 ];
 
 const NavLink = ({ children, to }: { children: string; to: string }) => (

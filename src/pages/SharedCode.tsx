@@ -10,24 +10,33 @@ interface SharedCodeData {
   timestamp: string;
 }
 
-// Get snippet from localStorage
-const getSnippet = (id: string): SharedCodeData | null => {
-  const snippets = JSON.parse(localStorage.getItem('codeSnippets') || '{}');
-  return snippets[id] || null;
-};
-
 const SharedCode = () => {
   const { code: snippetId } = useParams();
   
+  // Get snippet from localStorage
+  const getSnippet = (id: string): SharedCodeData | null => {
+    try {
+      const snippets = JSON.parse(localStorage.getItem('codeSnippets') || '{}');
+      return snippets[id] || null;
+    } catch (error) {
+      console.error('Error retrieving snippet:', error);
+      return null;
+    }
+  };
+
+  const snippet = snippetId ? getSnippet(snippetId) : null;
+  const { hasCopied, onCopy } = useClipboard(window.location.href);
+
   if (!snippetId) {
     return (
       <Container maxW="container.lg" py={8}>
-        <Heading>Code snippet not found</Heading>
+        <Heading>Invalid URL</Heading>
+        <Text color="red.500" mt={4}>
+          No snippet ID provided in the URL.
+        </Text>
       </Container>
     );
   }
-
-  const snippet = getSnippet(snippetId);
 
   if (!snippet) {
     return (
@@ -42,8 +51,6 @@ const SharedCode = () => {
     );
   }
 
-  const { hasCopied, onCopy } = useClipboard(window.location.href);
-  
   return (
     <Container maxW="container.lg" py={8}>
       <VStack spacing={8} align="stretch">

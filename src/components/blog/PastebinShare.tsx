@@ -14,8 +14,10 @@ import {
   InputGroup,
   InputRightElement,
   Icon,
+  useToast,
 } from '@chakra-ui/react';
 import { FaShare, FaCopy, FaCheck } from 'react-icons/fa';
+import { useState } from 'react';
 
 interface PastebinShareProps {
   code: string;
@@ -23,11 +25,47 @@ interface PastebinShareProps {
   filename?: string;
 }
 
+// Generate a random ID for the snippet
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 15) + 
+         Math.random().toString(36).substring(2, 15);
+};
+
 const PastebinShare = ({ code, language, filename }: PastebinShareProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const encodedCode = btoa(code);
-  const shareUrl = `${window.location.origin}/shared/${encodedCode}`;
+  const toast = useToast();
+  const [shareUrl, setShareUrl] = useState('');
   const { hasCopied: hasUrlCopied, onCopy: onUrlCopy } = useClipboard(shareUrl);
+
+  const handleShare = () => {
+    try {
+      const snippetId = generateId();
+      const shareData = {
+        code,
+        language,
+        filename,
+        timestamp: new Date().toISOString(),
+      };
+      
+      // Store in localStorage
+      const snippets = JSON.parse(localStorage.getItem('codeSnippets') || '{}');
+      snippets[snippetId] = shareData;
+      localStorage.setItem('codeSnippets', JSON.stringify(snippets));
+      
+      const url = `${window.location.origin}/shared/${snippetId}`;
+      setShareUrl(url);
+      onOpen();
+    } catch (error) {
+      console.error('Error sharing code:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to generate share link',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -36,7 +74,7 @@ const PastebinShare = ({ code, language, filename }: PastebinShareProps) => {
         leftIcon={<Icon as={FaShare} />}
         colorScheme="brand"
         variant="ghost"
-        onClick={onOpen}
+        onClick={handleShare}
       >
         Share
       </Button>
