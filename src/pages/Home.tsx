@@ -8,7 +8,6 @@ import {
   Container,
   Image,
   useColorModeValue,
-  SimpleGrid,
   Icon,
   Link,
   Flex,
