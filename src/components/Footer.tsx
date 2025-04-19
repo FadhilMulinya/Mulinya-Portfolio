@@ -1,17 +1,11 @@
-import { Box, Container, Stack, Text, Link, Icon, HStack } from '@chakra-ui/react';
+import { Box, Container, HStack, Link, Icon, Flex } from '@chakra-ui/react';
 import { FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaHashtag, FaCalendar } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <Box bg="white" borderTop="1px" borderColor="brand.200">
       <Container maxW="container.xl" py={4}>
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify="space-between"
-          align="center"
-        >
-          <Text>© 2025 Fadhil Mulinya. All rights reserved</Text>
+        <Flex justify="center" align="center">
           <HStack spacing={6}>
             <Link href="https://github.com/FadhilMulinya" isExternal>
               <Icon as={FaGithub} w={6} h={6} />
@@ -32,10 +26,10 @@ const Footer = () => {
               <Icon as={FaCalendar} w={6} h={6} />
             </Link>
           </HStack>
-        </Stack>
+        </Flex>
       </Container>
     </Box>
   );
 };
 
-export default Footer; 
+export default Footer;

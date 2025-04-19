@@ -11,18 +11,15 @@ import {
   SimpleGrid,
   Icon,
   Link,
+  Flex,
+  Center,
 } from '@chakra-ui/react';
-import { FaGithub, FaTwitter, FaLinkedin, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
+import Resume from './Resume';
 
 const skills = [
-  'Solidity',
-  'Yul',
-  'Inline Assembly',
-  'TypeScript',
-  'Smart Contracts',
-  'DeFi',
-  'Web3',
-  'Gas Optimization'
+  'Infrastructure',
+  'Developer Experience',
 ];
 
 const Home = () => {
@@ -33,6 +30,7 @@ const Home = () => {
 
   return (
     <Box>
+      {/* Hero Section with Centered Content */}
       <Box
         bg={bgGradient}
         py={20}
@@ -40,16 +38,39 @@ const Home = () => {
         mb={12}
         borderRadius="lg"
       >
-        <Container maxW="container.lg">
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} alignItems="center">
-            <VStack spacing={6} align="flex-start">
+        <Container maxW="container.md" textAlign="center">
+          <VStack spacing={8}>
+            <Center>
+              <Image
+                src="/fadhil.png"
+                alt="Fadhil Mulinya"
+                borderRadius="full"
+                boxSize="250px"
+                objectFit="cover"
+                border="4px solid"
+                borderColor="brand.800"
+                mb={4}
+              />
+            </Center>
+            
+            <VStack spacing={4}>
               <Heading as="h1" size="2xl">
                 Hi, I'm Fadhil Mulinya
               </Heading>
-              <Text fontSize="xl" maxW="2xl">
-                Smart Contract Developer & Developer Advocate passionate about building secure and efficient blockchain solutions.
+              
+              <Text fontSize="lg" maxW="700px">
+                Software Engineer building{' '}
+                <Link
+                  href="https://en.wikipedia.org/wiki/Free_and_open-source_software"
+                  isExternal
+                  color="blue.500"
+                >
+                  FLOSS
+                </Link>{' '}
+                softwares. In my spare time, I do technical writing and research mostly about protocol design and systems architecture.
               </Text>
-              <HStack wrap="wrap" spacing={2}>
+              
+              <Flex justify="center" wrap="wrap" gap={2}>
                 {skills.map((skill) => (
                   <Tag
                     key={skill}
@@ -64,108 +85,62 @@ const Home = () => {
                     {skill}
                   </Tag>
                 ))}
+              </Flex>
+              
+              <HStack spacing={4} pt={4}>
+                <Link
+                  href="https://calendly.com/mulinyafadhil/coffee-chat-s-with-fadhil"
+                  isExternal
+                  bg="white"
+                  color="brand.800"
+                  px={5}
+                  py={2}
+                  borderRadius="full"
+                  shadow="md"
+                  _hover={{
+                    textDecoration: 'none',
+                    transform: 'translateY(-2px)',
+                    transition: 'all 0.2s',
+                  }}
+                  display="flex"
+                  alignItems="center"
+                >
+                  Call <Icon as={FaArrowRight} ml={2} />
+                </Link>
+                
+                <Resume />
               </HStack>
             </VStack>
-            <Box position="relative">
-              <Box display="flex" justifyContent="center">
-                <Image
-                  src="/fadhil.png"
-                  alt="Fadhil Mulinya"
-                  borderRadius="full"
-                  boxSize="300px"
-                  objectFit="cover"
-                  border="4px solid"
-                  borderColor="brand.800"
-                />
-              </Box>
-              <Link
-                href="https://calendly.com/mulinyafadhil/coffee-chat-s-with-fadhil"
-                isExternal
-                position="absolute"
-                top="50%"
-                right="-20px"
-                transform="translateY(-50%)"
-                bg="white"
-                color="brand.800"
-                px={4}
-                py={2}
-                borderRadius="full"
-                shadow="md"
-                _hover={{
-                  textDecoration: 'none',
-                  transform: 'translateY(-50%) translateX(5px)',
-                  transition: 'all 0.2s',
-                }}
-                display="flex"
-                alignItems="center"
-              >
-                Chat <Icon as={FaArrowRight} ml={2} />
-              </Link>
-            </Box>
-          </SimpleGrid>
+          </VStack>
         </Container>
       </Box>
 
-      <Container maxW="container.lg">
-        <VStack spacing={12} align="stretch">
-          <Box>
-            <Heading as="h2" size="xl" mb={6}>
-              About Me
-            </Heading>
-            <Text fontSize="lg" color="brand.600" lineHeight="tall">
-              I specialize in developing secure and efficient smart contracts using Solidity, Yul, and Inline Assembly. 
-              With a deep understanding of blockchain technology and DeFi protocols, I focus on creating robust solutions 
-              that prioritize security and gas optimization. As a Developer Advocate, I bridge the gap between complex 
-              blockchain technologies and developer communities through technical content and documentation.
-            </Text>
-          </Box>
+      {/* About Me Section with Centered Content */}
+      <Container maxW="container.md" textAlign="center" mb={12}>
+        <VStack spacing={8} align="center">
+          <Heading as="h2" size="xl">
+            About Me
+          </Heading>
+          
+          <Text fontSize="lg" color="brand.600" lineHeight="tall">
+            <strong>Fadhil Mulinya</strong> is a software engineer based in Nairobi, Kenya, specializing in blockchain infrastructure and decentralized systems. His expertise spans developing secure and scalable smart contracts, decentralized applications, and driving Web3 ecosystems. Fadhil's work focuses on decentralizing identity, trustless systems, and digital public goods, pushing the boundaries of how blockchain technologies can foster inclusion and open access across emerging markets.
+          </Text>
 
-          <Box>
-            <Heading as="h2" size="xl" mb={6}>
-              Featured Work
-            </Heading>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-              <Box p={6} bg="white" borderRadius="lg" shadow="md">
-                <Heading as="h3" size="md" mb={4}>
-                  Smart Contract Development
-                </Heading>
-                <Text color="brand.600">
-                  Expertise in writing secure, gas-efficient smart contracts for DeFi protocols and blockchain applications.
-                  Proficient in Solidity, Yul, and low-level optimization techniques.
-                </Text>
-              </Box>
-              <Box p={6} bg="white" borderRadius="lg" shadow="md">
-                <Heading as="h3" size="md" mb={4}>
-                  Technical Writing & Advocacy
-                </Heading>
-                <Text color="brand.600">
-                  Creating comprehensive technical documentation, tutorials, and educational content for blockchain developers.
-                  Active contributor to the web3 community.
-                </Text>
-              </Box>
-            </SimpleGrid>
-          </Box>
+          <Text fontSize="lg" color="brand.600" lineHeight="tall">
+            In addition to his engineering work, Fadhil runs <Link href="https://www.buidlabz.com/" isExternal color="blue.500"><strong>Buidlabz</strong></Link>, a Web3 R&D studio that helps clients move from ideation to MVP in just 4-6 weeks. Buidlabz also develops developer tools, infrastructure, and open-source solutions designed to empower the next wave of blockchain-based applications. The studio's approach focuses on rapid iteration, security, and scalability, helping startups bring their innovative Web3 projects to life quickly and effectively.
+          </Text>
 
-          <Box>
-            <Heading as="h2" size="xl" mb={6}>
-              Connect
-            </Heading>
-            <HStack spacing={6}>
-              <a href="https://github.com/fadhilmulinyaf" target="_blank" rel="noopener noreferrer">
-                <Icon as={FaGithub} w={8} h={8} color="brand.800" />
-              </a>
-              <a href="https://twitter.com/mulinyafadhil" target="_blank" rel="noopener noreferrer">
-                <Icon as={FaTwitter} w={8} h={8} color="brand.800" />
-              </a>
-              <a href="https://www.linkedin.com/in/fadhil-mulinya-35464b238/" target="_blank" rel="noopener noreferrer">
-                <Icon as={FaLinkedin} w={8} h={8} color="brand.800" />
-              </a>
-            </HStack>
-          </Box>
+          <Text fontSize="lg" color="brand.600" lineHeight="tall">
+            Fadhil is the <strong>co-founder of <Link href="https://crefy-co.vercel.app/" isExternal color="blue.500">Crefy</Link></strong>, a zk-appchain focused on the issuance of decentralized identities and verifiable credentials. Crefy's mission is to advance self-sovereign identity frameworks that allow individuals and organizations to securely manage and share their digital identities across platforms, empowering users with full control over their personal data.
+          </Text>
+
+          <Text fontSize="lg" color="brand.600" lineHeight="tall">
+            In his exploration of decentralized governance, Fadhil co-founded <strong>Unicircle</strong>, a working group committed to researching Web3 governance models, cryptoeconomics, and game theory. Unicircle delves into new funding mechanisms and governance structures to build sustainable and decentralized ecosystems. The group is actively engaged in contributing to DAOs and diverse ecosystems, helping shape the future of decentralized coordination and decision-making.
+          </Text>
         </VStack>
       </Container>
     </Box>
   );
 };
 
-export default Home; 
+export default Home;

@@ -2,7 +2,6 @@ import { Box, Button, HStack, Text, useClipboard, Link, useColorModeValue, Icon 
 import { CopyIcon, CheckIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import PastebinShare from './PastebinShare';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaExternalLinkAlt, FaBook } from 'react-icons/fa';
 
@@ -96,7 +95,6 @@ const CodeBlock = ({
                 Read Full Article <ExternalLinkIcon mx={1} />
               </Link>
             )}
-            <PastebinShare code={code} language={language} filename={filename} />
             <Button
               size="sm"
               variant="ghost"

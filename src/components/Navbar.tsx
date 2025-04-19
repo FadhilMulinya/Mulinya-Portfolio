@@ -14,9 +14,6 @@ import { Link as RouterLink } from 'react-router-dom';
 const Links = [
   { name: 'Home', path: '/' },
   { name: 'Blog', path: '/blog' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Resume', path: '/resume' },
-  { name: 'Academy', path: '/academy' },
 ];
 
 const NavLink = ({ children, to }: { children: string; to: string }) => (
@@ -41,18 +38,17 @@ const Navbar = () => {
   return (
     <Box bg="white" px={4} borderBottom="1px" borderColor="brand.200">
       <Container maxW="container.xl">
-        <Flex h={16} alignItems="center" justifyContent="space-between">
+        <Flex h={16} alignItems="center" justifyContent="center">
           <IconButton
             size="md"
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label="Open Menu"
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
+            position="absolute"
+            left="4"
           />
           <HStack spacing={8} alignItems="center">
-            <Box fontWeight="bold" fontSize="xl">
-              Fadhil Mulinya
-            </Box>
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
                 <NavLink key={link.path} to={link.path}>
@@ -65,7 +61,7 @@ const Navbar = () => {
 
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
-            <Stack as="nav" spacing={4}>
+            <Stack as="nav" spacing={4} align="center">
               {Links.map((link) => (
                 <NavLink key={link.path} to={link.path}>
                   {link.name}
@@ -79,4 +75,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
