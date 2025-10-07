@@ -121,21 +121,23 @@ const Home = () => {
             About Me
           </Heading>
           
-          <Text fontSize="lg" color="brand.600" lineHeight="tall">
-            <strong>Fadhil Mulinya</strong> is a software engineer based in Nairobi, Kenya, specializing in blockchain infrastructure and decentralized systems. His expertise spans developing secure and scalable smart contracts, decentralized applications, and driving Web3 ecosystems. Fadhil's work focuses on decentralizing identity, trustless systems, and digital public goods, pushing the boundaries of how blockchain technologies can foster inclusion and open access across emerging markets.
-          </Text>
+        <Text fontSize="lg" color="brand.600" lineHeight="tall">
+          <strong>Fadhil Mulinya</strong> is a software engineer and blockchain builder , passionate about the intersection of technology, decentralization, and human coordination. His work centers on blockchain infrastructure, decentralized identity systems, and trustless frameworks that enable open collaboration. Fadhil’s expertise spans designing secure and scalable smart contracts, building developer tools, and creating infrastructure that empowers communities and ecosystems across the Web3 space. His focus lies in digital identities, public goods, governance, and DAOs , exploring how blockchain can drive inclusion, transparency, and opportunity across emerging markets.
+        </Text>
 
-          <Text fontSize="lg" color="brand.600" lineHeight="tall">
-            In addition to his engineering work, Fadhil runs <Link href="https://www.buidlabz.com/" isExternal color="blue.500"><strong>Buidlabz</strong></Link>, a Web3 R&D studio that helps clients move from ideation to MVP in just 4-6 weeks. Buidlabz also develops developer tools, infrastructure, and open-source solutions designed to empower the next wave of blockchain-based applications. The studio's approach focuses on rapid iteration, security, and scalability, helping startups bring their innovative Web3 projects to life quickly and effectively.
-          </Text>
+        <Text fontSize="lg" color="brand.600" lineHeight="tall">
+          Before transitioning fully into engineering, Fadhil served as a <strong>Developer Advocate</strong>, collaborating with leading blockchain ecosystems such as <strong>Arbitrum</strong>, <strong>Cartesi</strong>, <strong>Avalanche</strong>, and <strong>ICP</strong>. During this time, he helped train and onboard thousands of new developers into the blockchain space , running workshops, hackathons, and educational programs that demystified Web3 development. Fadhil also worked  with communities and collectives like <Link href="https://www.onedev.club/" isExternal color="blue.500"><strong>OneDev Africa</strong></Link>, <Link href="https://web3clubs.xyz/" isExternal color="blue.500"><strong>Web3 Clubs</strong></Link>, <Link href="https://icphubkenya.io/" isExternal color="blue.500"><strong>ICPHub Kenya</strong></Link>, <Link href="https://w3-zetech.vercel.app/" isExternal color="blue.500"><strong>W3Zetech</strong></Link>, and <Link href="https://metametaclub.com/" isExternal color="blue.500"><strong>Metameta Club</strong></Link> , where he played a key role in community growth, technical mentorship, and creating pathways for the next generation of African Web3 builders.
+        </Text>
 
-          <Text fontSize="lg" color="brand.600" lineHeight="tall">
-            Fadhil is the <strong>co-founder of <Link href="https://crefy-co.vercel.app/" isExternal color="blue.500">Crefy</Link></strong>, a zk-appchain focused on the issuance of decentralized identities and verifiable credentials. Crefy's mission is to advance self-sovereign identity frameworks that allow individuals and organizations to securely manage and share their digital identities across platforms, empowering users with full control over their personal data.
-          </Text>
+        <Text fontSize="lg" color="brand.600" lineHeight="tall">
+          In addition to his advocacy and engineering work, Fadhil co-founded <Link href="https://www.buidlabz.com/" isExternal color="blue.500"><strong>Buidlabz</strong></Link>, a Web3 R&D studio that turns bold ideas into working products within 4–6 weeks. Buidlabz builds developer tools, infrastructure, and open-source solutions that accelerate innovation and make Web3 development more accessible. The studio emphasizes rapid iteration, scalability, and security , helping teams bring their  products to life with confidence and speed.
+        </Text>
 
-          <Text fontSize="lg" color="brand.600" lineHeight="tall">
-            In his exploration of decentralized governance, Fadhil co-founded <strong>Unicircle</strong>, a working group committed to researching Web3 governance models, cryptoeconomics, and game theory. Unicircle delves into new funding mechanisms and governance structures to build sustainable and decentralized ecosystems. The group is actively engaged in contributing to DAOs and diverse ecosystems, helping shape the future of decentralized coordination and decision-making.
-          </Text>
+        <Text fontSize="lg" color="brand.600" lineHeight="tall">
+          Continuing his exploration of decentralized coordination, Fadhil co-founded <Link href="https://unicircle-five.vercel.app/" isExternal color="blue.500"> <strong>Unicircle</strong> </Link>, a working group researching Web3 governance, cryptoeconomics, mechanism design and  game-theoretic models for sustainable digital ecosystems. Unicircle experiments with novel funding mechanisms and participatory governance models to shape the next generation of decentralized communities. Through this initiative, Fadhil continues to contribute to DAOs and open ecosystems that push the boundaries of collective ownership, collaboration, and innovation.
+        </Text>
+
+
         </VStack>
       </Container>
     </Box>
