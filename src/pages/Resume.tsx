@@ -6,8 +6,8 @@ const Resume = () => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/FADHILS-RESUME.odt';
-    link.download = 'FADHILS-RESUME.odt';
+    link.href = '/FADHILS-RESUME.pdf';
+    link.download = 'FADHILS-RESUME.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
